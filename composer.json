@@ -1,0 +1,32 @@
+{
+  "name": "jblond/morse",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JBlond",
+      "email": "leet31337@web.de"
+    }
+  ],
+  "require": {
+    "php": ">= 8.0"
+  },
+  "require-dev": {
+    "ext-fileinfo": "*",
+    "phpunit/phpunit": "^7 || ^8 || ^9"
+  },
+  "autoload": {
+    "psr-4": {
+      "jblond\\morse\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "jblond\\": "tests/"
+    }
+  },
+  "scripts": {
+    "phpunit": "phpunit ./tests/"
+  }
+}
