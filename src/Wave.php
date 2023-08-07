@@ -24,6 +24,7 @@ class Wave
     protected const pause = '/';
 
     /**
+     * 8-bit sound generated at a rate of 11050 samples/second
      * @var int
      */
     protected int $sampleRate = 11050;
@@ -82,19 +83,19 @@ class Wave
     /**
      * @var float
      */
-    protected float $sampleDt;
+    protected float $sampleDelayTime;
 
     /**
      * @var Morse
      */
-    protected Morse $characters;
+    protected Morse $morse;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->characters = new Morse();
+        $this->morse = new Morse();
     }
 
     /**
@@ -156,7 +157,7 @@ class Wave
 
         $this->wordsPc = floor(2 * $this->charsPc + 0.5);
         $this->dashTime = 3 * $this->dotTime;
-        $this->sampleDt = 1.0 / $this->sampleRate;
+        $this->sampleDelayTime = 1.0 / $this->sampleRate;
         $this->phase = 0;
         $this->dPhase = 0;
         //$this->slash = false;
@@ -182,16 +183,16 @@ class Wave
                 $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
             }
             $this->bytes[self::pause] .= chr(128);
-            $dit += $this->sampleDt;
+            $dit += $this->sampleDelayTime;
         }
 
-        // At this point the dit ans space sound have been generated
+        // At this point the dit and space sound have been generated
         // During the next dit-time, the dah sound amplitude is constant
         $dit = 0;
         while ($dit < $this->dotTime) {
             $x = $this->osc();
             $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
-            $dit += $this->sampleDt;
+            $dit += $this->sampleDelayTime;
         }
 
         // During the 3rd dit-time, the dah-sound has a constant amplitude
@@ -203,7 +204,7 @@ class Wave
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
             }
             $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
-            $dit += $this->sampleDt;
+            $dit += $this->sampleDelayTime;
         }
 
         // Convert the text to morse code string
@@ -213,7 +214,7 @@ class Wave
             if ($text[$i] === ' ') {
                 $sound .= str_repeat($this->bytes[self::pause], $this->wordsPc);
             } else {
-                $xChar = $this->characters->getCharacter($i);
+                $xChar = $this->morse->getCharacter($i);
 
                 for ($k = 0, $kMax = strlen($xChar); $k < $kMax; $k++) {
                     if ($xChar[$k] === '0') {
@@ -250,6 +251,13 @@ class Wave
             $x = floor($x / 256);
         }
 
+        /*
+         * The first chunk, in our case, consists of the format specifier that begins with the ASCII characters
+         * fmt followed by a 4-byte chunk size that is equal to 16, 18, or 40,
+         * depending on the sound encoding format used. In this application, I use plain vanilla PCM format,
+         * so the chunk size is always 16 bytes and the required data is the number of channels,
+         * sound samples/second, average bytes/second, a block align indicator, and the number of bits/sound sample.
+         */
         $headerString = 'fmt ' . chr(16) . chr(0) . chr(0) . chr(0) . chr(1) . chr(0) . chr(1) . chr(0);
         $headerString .= $sampleRateString . $sampleRateString . chr(1) . chr(0) . chr(8) . chr(0);
         $x = $n;
@@ -282,7 +290,7 @@ class Wave
     protected function oscReset(): void
     {
         $this->phase = 0;
-        $this->dPhase = $this->twoPi * $this->sampleDt / $this->toneTime;
+        $this->dPhase = $this->twoPi * $this->sampleDelayTime / $this->toneTime;
     }
 
     /**
