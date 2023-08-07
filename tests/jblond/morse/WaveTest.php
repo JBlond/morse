@@ -22,7 +22,7 @@ class WaveTest extends TestCase
     public function testCanGenerateValidWav(): void
     {
         $wav = new Wave();
-        $output = $wav->generate('Espen');
+        $output = $wav->generate('Hoc est temptare');
 
         $fileInfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $fileInfo->buffer($output);
@@ -36,7 +36,7 @@ class WaveTest extends TestCase
     public function testCanSetCwSpeed(): void
     {
         $wav = (new Wave())->setCwSpeed(10);
-        $output = $wav->generate('Espen');
+        $output = $wav->generate('Hoc est temptare');
 
         $fileInfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $fileInfo->buffer($output);
@@ -56,7 +56,7 @@ class WaveTest extends TestCase
     public function testCanSetSampleRate(): void
     {
         $wav = (new Wave())->setSampleRate(8000);
-        $output = $wav->generate('Espen');
+        $output = $wav->generate('Hoc est temptare');
 
         $fileInfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $fileInfo->buffer($output);
@@ -77,7 +77,7 @@ class WaveTest extends TestCase
     public function testCanSetFrequency(): void
     {
         $wav = (new Wave())->setFrequency(8000);
-        $output = $wav->generate('Espen');
+        $output = $wav->generate('Hoc est temptare');
 
         $fileInfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $fileInfo->buffer($output);
@@ -98,24 +98,23 @@ class WaveTest extends TestCase
     public function testCanGenerateLongerValidWav(): void
     {
         $wav = new Wave();
-        $output = $wav->setFrequency(100)->generate($this->getLoremIpsum());
+        $output = $wav->setFrequency(100)->generate($this->getSampleText());
         $fileInfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $fileInfo->buffer($output);
 
         $this->assertEquals('audio/x-wav', $mime);
     }
 
-    protected function getLoremIpsum(): string
+    protected function getSampleText(): string
     {
         return (
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' .
-            'Duis sed dignissim arcu. Etiam non euismod nulla. ' .
-            'Cras non sagittis velit. Donec et imperdiet ipsum. ' .
-            'Fusce vel enim ut neque pellentesque congue. ' .
-            'Nunc posuere vitae justo eu dignissim. ' .
-            'Sed eget nunc sed massa auctor posuere. ' .
-            'Etiam condimentum ullamcorper tellus, et tempor nisl aliquet a.' .
-            'Nulla finibus ut nulla eu rhoncus.'
+            'tecta perstillantia in die frigoris et litigiosa mulier conparantur'.
+            'qui retinet eam quasi qui ventum teneat et oleum dexterae suae vocabit.' .
+            'melius est habitare in terra deserta quam cum muliere rixosa et iracunda. ' .
+            'quod si invicem mordetis et comeditis videte ne ab invicem consumamini. ' .
+            'si habuerint inter se iurgium viri et unus contra alterum rixari coeperit' .
+            'volensque uxor alterius eruere virum suum de manu fortioris miserit manum'.
+            ' et adprehenderit verenda eius. '
         );
     }
 }
