@@ -15,3 +15,5 @@ echo $morse;
 $wave = new Wave();
 file_put_contents('sos.wav', $wave->generate('SOS'));
 ```
+
+License: MIT
