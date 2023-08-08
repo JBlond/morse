@@ -9,35 +9,37 @@ class MorseTest extends TestCase
 
     public function testGetCharacter(): void
     {
-        $characters = new Morse();
+        $morse = new Morse();
         $this->assertEquals(
             [
                 '01 ',
                 '01001 ',
+                'thai',
                 '1001 '
             ],
             [
-                $characters->getCharacter('A'),
-                $characters->getCharacter('Ł'),
-                $characters->getCharacter('ช')
+                $morse->getCharacter('A'),
+                $morse->getCharacter('Ł'),
+                $morse->setLetters('thai'),
+                $morse->getCharacter('ช')
             ]
         );
     }
 
     public function testStringToMorse(): void
     {
-        $characters = new Morse();
+        $morse = new Morse();
         $this->assertEquals(
             '1 0000 00 000 / 00 000 / 0111 001 000 1 / 01 / 1 0 000 1 101011 ',
-            $characters->stringToMorse('This is just a test!')
+            $morse->stringToMorse('This is just a test!')
         );
     }
     public function testDotDash(): void
     {
-        $characters = new Morse();
+        $morse = new Morse();
         $this->assertEquals(
             '- .... .. ... / .. ... / .--- ..- ... - / .- / - . ... - -.-.-- ',
-            $characters->dotDash('1 0000 00 000 / 00 000 / 0111 001 000 1 / 01 / 1 0 000 1 101011 ')
+            $morse->dotDash('1 0000 00 000 / 00 000 / 0111 001 000 1 / 01 / 1 0 000 1 101011 ')
         );
     }
 }
