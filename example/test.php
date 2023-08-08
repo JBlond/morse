@@ -5,9 +5,9 @@ use jblond\morse\Wave;
 
 require '../vendor/autoload.php';
 
-$character = new Morse();
-$morseBinary = $character->stringToMorse('SOS');
-$morse = $character->dotDash($morseBinary);
-echo $morse;
+$morse = new Morse();
+$morseBinary = $morse->stringToMorse('SOS');
+$morseCode = $morse->dotDash($morseBinary);
+echo $morseCode;
 $wave = new Wave();
 file_put_contents('sos.wav', $wave->generate('SOS'));
