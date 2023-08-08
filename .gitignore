@@ -2,3 +2,4 @@
 /.phpunit.result.cache
 /example/sos.wav
 /vendor
+/.phpunit.cache/
