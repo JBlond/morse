@@ -2,6 +2,16 @@
 
 namespace jblond\morse;
 
+use jblond\morse\CharacterSet\Arabic;
+use jblond\morse\CharacterSet\Cyrillic;
+use jblond\morse\CharacterSet\Greek;
+use jblond\morse\CharacterSet\Hebrew;
+use jblond\morse\CharacterSet\Japanese;
+use jblond\morse\CharacterSet\Korean;
+use jblond\morse\CharacterSet\Latin;
+use jblond\morse\CharacterSet\Persian;
+use jblond\morse\CharacterSet\Thai;
+
 /**
  *
  */
@@ -13,137 +23,8 @@ class Morse
     protected array $letters = [];
 
     /**
-     * @var array|string[]
+     *
      */
-    public array $latin = [
-        // Latin => https://en.wikipedia.org/wiki/Morse_code
-        '01' => 'A', '1000' => 'B', '1010' => 'C', '100' => 'D', '0' => 'E', '0010' => 'F',
-        '110' => 'G', '0000' => 'H', '00' => 'I', '0111' => 'J', '101' => 'K', '0100' => 'L',
-        '11' => 'M', '10' => 'N', '111' => 'O', '0110' => 'P', '1101' => 'Q', '010' => 'R',
-        '000' => 'S', '1' => 'T', '001' => 'U', '0001' => 'V', '011' => 'W', '1001' => 'X',
-        '1011' => 'Y', '1100' => 'Z',
-        // numbers
-        '11111' => '0', '01111' => '1', '00111' => '2', '00011' => '3', '00001' => '4',
-        '00000' => '5', '10000' => '6', '11000' => '7', '11100' => '8', '11110' => '9',
-        // Punctuation
-        '010101' => '.', '110011' => ',', '001100' => '?', '011110' => '\'', '101011' => '!', '10010' => '/',
-        '10110' => '(', '101101' => ')', '01000' => '&', '111000' => ':', '101010' => ';', '10001' => '=',
-        '01010' => '+', '100001' => '-', '001101' => '_', '010010' => '"', '0001001' => '$', '011010' => '@',
-        '00101' => '¿', '110001' => '¡',
-        // Latin Extended => https://ham.stackexchange.com/questions/1379/international-characters-in-morse-code
-        'Ã' => '01101', '01101' => 'Á', 'Å' => '01101', 'À' => '01101', 'Â' => '01101', '0101' => 'Ä',
-        'Ç' => '10100', 'Ć' => '10100', 'Ĉ' => '10100', 'Č' => '110',
-        '00110' => 'Ð', '00100' => 'É',
-        '11010' => 'Ğ', '1111' => 'Ĥ', '01110' => 'Ì', '01001' => 'Ł', '11011' => 'Ñ', 'Ö' => '1110',
-        '0001000' => 'Ś', '01100' => 'Ş', '00010' => 'Ŝ', '0001100' => 'ß', '0011' => 'Ü',
-        '11001' => 'Ż',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $cyrillic = [
-        // Cyrillic Alphabet => https://en.wikipedia.org/wiki/Russian_Morse_code
-        '01' => 'А', '1000' => 'Б', '011' => 'В', '110' => 'Г', '100' => 'Д', '0' => 'Е',
-        '0001' => 'Ж', '1100' => 'З', '00' => 'И', '0111' => 'Й', '101' => 'К', '0100' => 'Л',
-        '11' => 'М', '10' => 'Н', '111' => 'О', '0110' => 'П', '010' => 'Р', '000' => 'С',
-        '1' => 'Т', '001' => 'У', '0010' => 'Ф', '0000' => 'Х', '1010' => 'Ц', '1110' => 'Ч',
-        '1111' => 'Ш', '1101' => 'Щ', '11011' => 'Ъ', '1011' => 'Ы', '1001' => 'Ь',
-        '0011' => 'Ю', '0101' => 'Я', '01110' => 'Ї', '00100' => 'Є',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $greek = [
-        // Greek Alphabet => https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
-        '01' => 'Α', '1000' => 'Β', '110' => 'Γ', '100' => 'Δ', '0' => 'Ε', '1100' => 'Ζ',
-        '0000' => 'Η', '1010' => 'Θ', '00' => 'Ι', '101' => 'Κ', '0100' => 'Λ', '11' => 'Μ',
-        '10' => 'Ν', '1001' => 'Ξ', '111' => 'Ο', '0110' => 'Π', '010' => 'Ρ', '000' => 'Σ',
-        '1' => 'Τ', '1011' => 'Υ', '0010' => 'Φ', '1111' => 'Χ', '1101' => 'Ψ', '011' => 'Ω',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $hebrew = [
-        // Hebrew Alphabet => https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
-        'א' => '01', 'ב' => '1000', 'ג' => '110', 'ד' => '100', 'ה' => '111', 'ו' => '0',
-        'ז' => '1100', 'ח' => '0000', 'ט' => '001', 'י' => '00', 'כ' => '101', 'ל' => '0100',
-        'מ' => '11', 'נ' => '10', 'ס' => '1010', 'ע' => '0111', 'פ' => '0110', 'צ' => '011',
-        'ק' => '1101', 'ר' => '010', 'ש' => '000', 'ת' => '1',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $arabic = [
-        // Arabic Alphabet => https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
-        'ا' => '01', 'ب' => '1000', 'ت' => '1', 'ث' => '1010', 'ج' => '0111', 'ح' => '0000',
-        'خ' => '111', 'د' => '100', 'ذ' => '1100', 'ر' => '010', 'ز' => '1110', 'س' => '000',
-        'ش' => '1111', 'ص' => '1001', 'ض' => '0001', 'ط' => '001', 'ظ' => '1011', 'ع' => '0101',
-        'غ' => '110', 'ف' => '0010', 'ق' => '1101', 'ك' => '101', 'ل' => '0100', 'م' => '11',
-        'ن' => '10', 'ه' => '00100', 'و' => '011', 'ي' => '00', 'ﺀ' => '0',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $persian = [
-        // Persian Alphabet => https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
-        'ا' => '01', 'ب' =>'1000', 'پ' => '0110', 'ت' => '1', 'ث' => '1010', 'ج' => '0111',
-    'چ' => '1110', 'ح' => '0000', 'خ' => '1001', 'د' => '100', 'ذ' => '0001', 'ر' => '010',
-    'ز' => '1100', 'ژ' => '110', 'س' => '000', 'ش' => '1111', 'ص' => '0101', 'ض' => '00100',
-    'ط' => '001', 'ظ' => '1011', 'ع' => '111', 'غ' => '0011', 'ف' => '0010', 'ق' => '111000',
-    'ک' => '101', 'گ' => '1101', 'ل' => '0100', 'م' => '11', 'ن' => '10', 'و' => '011',
-    'ه' => '0', 'ی' => '00'
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public  array $japanese = [
-        // Japanese Alphabet => https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%AB%E3%82%B9%E7%AC%A6%E5%8F%B7#%E5%92%8C%E6%96%87%E3%83%A2%E3%83%BC%E3%83%AB%E3%82%B9%E7%AC%A6%E5%8F%B7
-        'ア' => '11011', 'カ' => '0100', 'サ' => '10101', 'タ' => '10', 'ナ' => '010', 'ハ' => '1000',
-        'マ' => '1001', 'ヤ' => '011', 'ラ' => '000', 'ワ' => '101', 'イ' => '01', 'キ' => '10100',
-        'シ' => '11010', 'チ' => '0010', 'ニ' => '1010', 'ヒ' => '11001', 'ミ' => '00101', 'リ' => '110',
-        'ヰ' => '01001', 'ウ' => '001', 'ク' => '0001', 'ス' => '11101', 'ツ' => '0110', 'ヌ' => '0000',
-        'フ' => '1100', 'ム' => '1', 'ユ' => '10011', 'ル' => '10110', 'ン' => '01010', 'エ' => '10111',
-        'ケ' => '1011', 'セ' => '01110', 'テ' => '01011', 'ネ' => '1101', 'ヘ' => '0', 'メ' => '10001',
-        'レ' => '111', 'ヱ' => '01100', 'オ' => '01000', 'コ' => '1111', 'ソ' => '1110', 'ト' => '00100',
-        'ノ' => '0011', 'ホ' => '100', 'モ' => '10010', 'ヨ' => '11', 'ロ' => '0101', 'ヲ' => '0111',
-        '゛' => '00', '゜' => '00110', '。' => '010100', 'ー' => '01101', '、' => '010101',
-        '（' => '101101', '）' => '010010',
-    ];
-    /**
-     * @var array|string[]
-     */
-    public  array $korean = [
-        // Korean Alphabet => https://en.wikipedia.org/wiki/SKATS
-        'ㄱ' => '0100', 'ㄴ' => '0010', 'ㄷ' => '1000', 'ㄹ' => '0001', 'ㅁ' => '11', 'ㅂ' => '011',
-        'ㅅ' => '110', 'ㅇ' => '101', 'ㅈ' => '0110', 'ㅊ' => '1010', 'ㅋ' => '1001', 'ㅌ' => '1100',
-        'ㅍ' => '111', 'ㅎ' => '0111', 'ㅏ' => '0', 'ㅑ' => '00', 'ㅓ' => '1', 'ㅕ' => '000',
-        'ㅗ' => '01', 'ㅛ' => '10', 'ㅜ' => '0000', 'ㅠ' => '010', 'ㅡ' => '100', 'ㅣ' => '001',
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    public array $thai = [
-        // Thai Alphabet => https://th.wikipedia.org/wiki/รหัสมอร์ส
-        '10' => 'ก', '1010' => 'ข', '101' => 'ค', '10110' => 'ง', '10010' => 'จ',
-        '1111' => 'ฉ', '1001' => 'ช', '1100' => 'ซ', '0111' => 'ญ', '100' => 'ด',
-        '1' => 'ต', '10100' => 'ถ', '10011' => 'ท', '1000' => 'บ',
-        '0110' => 'ป', '1101' => 'ผ', '10101' => 'ฝ', '01100' => 'พ', '0010' => 'ฟ',
-        '11' => 'ม', '1011' => 'ย', '010' => 'ร', '0100' => 'ล', '011' => 'ว',
-        '000' => 'ส', '0000' => 'ห', '10001' => 'อ', '11011' => 'ฮ', '01011' => 'ฤ',
-        '01000' => 'ะ', '01' => 'า', '00100' => 'ิ', '00' => 'ี', '00110' => 'ึ',
-        '0011' => 'ื', '00101' => 'ุ', '1110' => 'ู', '0' => 'เ', '0101' => 'แ',
-        '01001' => 'ไ', '111' => 'โ', '00010' => 'ำ', '001' => '่', '0001' => '้',
-        '11000' => '๊', '01010' => '๋', '01101' => 'ั', '11100' => '็', '11001' => '์',
-        '10111' => 'ๆ', '11010' => 'ฯ'
-    ];
-
     public function __construct()
     {
         $this->setLetters();
@@ -153,22 +34,31 @@ class Morse
      * @param string $letters
      * @return string
      */
-    public function setLetters(string $letters = 'latin'): string
+    public function setLetters(string $letters = 'Latin'): string
     {
         $this->letters = match($letters) {
-            'cyrillic' => $this->cyrillic,
-            'greek' => $this->greek,
-            'hebrew' => $this->hebrew,
-            'arabic' => $this->arabic,
-            'persian' => $this->persian,
-            'japanese' => $this->japanese,
-            'korean' => $this->korean,
-            'thai' => $this->thai,
-            default => $this->latin,
+            'Cyrillic' => (new Cyrillic())->get(),
+            'Greek' => (new Greek())->get(),
+            'Hebrew' => (new Hebrew())->get(),
+            'Arabic' => (new Arabic())->get(),
+            'Persian' => (new Persian())->get(),
+            'Japanese' => (new Japanese())->get(),
+            'Korean' => (new Korean())->get(),
+            'Thai' => (new Thai())->get(),
+            default => (new Latin())->get()
         };
         return $letters;
     }
 
+    protected function mb_array_search(string $needle, array $haystack)
+    {
+        foreach ($haystack as $key => $value){
+            if(mb_strtolower($value) === mb_strtolower($needle)){
+                return $key;
+            }
+        }
+        return false;
+    }
     /**
      * @param string $input
      * @return string
@@ -178,14 +68,15 @@ class Morse
         if($input === ' '){
             return '/ ';
         }
-        $result = array_search($input, $this->letters, true);
+        $result = $this->mb_array_search($input, $this->letters);
         if($result !== false){
             return $result . ' ';
         }
-        $result = array_search(strtoupper($input), $this->letters, true);
+        $result = $this->mb_array_search(strtoupper($input), $this->letters);
         if($result !== false){
             return $result . ' ';
         }
+        //echo '[' . $input . ']';
         return '#';
     }
 
@@ -196,8 +87,11 @@ class Morse
     public function stringToMorse(string $string): string
     {
         $morseCode = '';
-        $stringArray = str_split($string);
+        $stringArray = preg_split('//u', $string);
         foreach ($stringArray as $character){
+            if($character === ''){
+                continue;
+            }
             $morseCode .= $this->getCharacter($character);
         }
         return $morseCode;
