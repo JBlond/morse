@@ -7,6 +7,9 @@ use finfo;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/**
+ *
+ */
 class WaveTest extends TestCase
 {
     /**
@@ -19,6 +22,10 @@ class WaveTest extends TestCase
         }
     }
 
+    /**
+     * @covers \jblond\morse\Wave
+     * @return void
+     */
     public function testCanGenerateValidWav(): void
     {
         $wav = new Wave();
@@ -31,6 +38,7 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetCwSpeed(): void
@@ -43,6 +51,11 @@ class WaveTest extends TestCase
         $this->assertEquals('audio/x-wav', $mime);
     }
 
+    /**
+     * @covers \jblond\morse\Wave
+     * @return void
+     * @throws Exception
+     */
     public function testThrowsIfInvalidCwSpeedSet(): void
     {
         $this->expectExceptionMessage("Speed must be numeric");
@@ -51,6 +64,7 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetSampleRate(): void
@@ -64,6 +78,11 @@ class WaveTest extends TestCase
         $this->assertEquals('audio/x-wav', $mime);
     }
 
+    /**
+     * @covers \jblond\morse\Wave
+     * @return void
+     * @throws Exception
+     */
     public function testThrowsIfInvalidSampleRateSet(): void
     {
         $this->expectExceptionMessage("Sample rate must be numeric");
@@ -72,6 +91,7 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetFrequency(): void
@@ -85,6 +105,11 @@ class WaveTest extends TestCase
         $this->assertEquals('audio/x-wav', $mime);
     }
 
+    /**
+     * @covers \jblond\morse\Wave
+     * @return void
+     * @throws Exception
+     */
     public function testThrowsIfInvalidFrequencySet(): void
     {
         $this->expectExceptionMessage("Frequency must be numeric");
@@ -93,6 +118,7 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanGenerateLongerValidWav(): void
@@ -105,6 +131,9 @@ class WaveTest extends TestCase
         $this->assertEquals('audio/x-wav', $mime);
     }
 
+    /**
+     * @return string
+     */
     protected function getSampleText(): string
     {
         return (

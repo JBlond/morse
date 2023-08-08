@@ -5,9 +5,16 @@ namespace jblond\morse;
 use jblond\morse\CharacterSet\Greek;
 use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ */
 class MorseTest extends TestCase
 {
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testGetCharacter(): void
     {
         $morse = new Morse();
@@ -27,6 +34,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testStringToMorse(): void
     {
         $morse = new Morse();
@@ -36,6 +47,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testJapaneseString(): void
     {
         $morse = new Morse();
@@ -56,6 +71,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testGreekString(): void
     {
         $morse = new Morse();
@@ -71,6 +90,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testCyrillicString(): void
     {
         $morse = new Morse();
@@ -86,6 +109,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testArabicString(): void
     {
         $morse = new Morse();
@@ -101,6 +128,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testHebrewString(): void
     {
         $morse = new Morse();
@@ -116,6 +147,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testKoreanString(): void
     {
         $morse = new Morse();
@@ -134,6 +169,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testPersianString(): void
     {
         $morse = new Morse();
@@ -149,6 +188,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testThaiString(): void
     {
         $morse = new Morse();
@@ -164,6 +207,10 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @return void
+     */
     public function testDotDash(): void
     {
         $morse = new Morse();
