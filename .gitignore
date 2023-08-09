@@ -1,5 +1,6 @@
-/composer.lock
+/.phpunit.cache/
 /.phpunit.result.cache
+/codeCoverage/
+/composer.lock
 /example/sos.wav
 /vendor
-/.phpunit.cache/
