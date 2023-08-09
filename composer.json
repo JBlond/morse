@@ -15,7 +15,8 @@
   },
   "require-dev": {
     "ext-fileinfo": "*",
-    "phpunit/phpunit": "^9 || ^10"
+    "phpunit/phpunit": "^9 || ^10",
+    "squizlabs/php_codesniffer": "*"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +29,21 @@
     }
   },
   "scripts": {
-    "phpunit": "phpunit ./tests/"
+    "phpunit": "phpunit ./tests/",
+    "php_src": "phpcs --standard=phpcs.xml -s -p --colors ./src/",
+    "php_test": "phpcs --standard=phpcs.xml -s -p --colors ./tests/",
+    "test": [
+      "@php_src",
+      "@php_test",
+      "phpunit --colors=always --testdox"
+    ],
+    "coverage": "phpunit --colors=always --coverage-html codeCoverage"
+  },
+  "scripts-descriptions": {
+    "phpunit": "Run PHPUnit tests",
+    "php_src": "Run code sniffer on lib directory",
+    "php_test": "Run code sniffer on tests directory",
+    "test": "Run code formatting test and phpunit",
+    "coverage": "phpunit --colors=always --coverage-html codeCoverage"
   }
 }

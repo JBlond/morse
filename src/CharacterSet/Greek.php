@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jblond\morse\CharacterSet;
+
 class Greek implements Character
 {
     /**
@@ -40,29 +43,47 @@ class Greek implements Character
 
         $latin_check = '/[\x{0030}-\x{007f}]/u';
 
-        if (preg_match($latin_check, $string))
-        {
-
+        if (preg_match($latin_check, $string)) {
             $string = strtoupper($string);
-
         }
 
-        $letters  								= array('α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω');
-        $letters_accent 						= array('ά', 'έ', 'ή', 'ί', 'ό', 'ύ', 'ώ');
-        $letters_upper_accent 					= array('Ά', 'Έ', 'Ή', 'Ί', 'Ό', 'Ύ', 'Ώ');
-        $letters_upper_solvents 				= array('ϊ', 'ϋ');
-        $letters_other 							= array('ς');
+        $letters                             = [
+                                                 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η',
+                                                 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ',
+                                                 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ',
+                                                 'χ', 'ψ', 'ω'
+                                             ];
+        $letters_accent                      = ['ά', 'έ', 'ή', 'ί', 'ό', 'ύ', 'ώ'];
+        $letters_upper_accent                = ['Ά', 'Έ', 'Ή', 'Ί', 'Ό', 'Ύ', 'Ώ'];
+        $letters_upper_solvents              = ['ϊ', 'ϋ'];
+        $letters_other                       = ['ς'];
 
-        $letters_to_uppercase					= array('Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω');
-        $letters_accent_to_uppercase 			= array('Α', 'Ε', 'Η', 'Ι', 'Ο', 'Υ', 'Ω');
-        $letters_upper_accent_to_uppercase 		= array('Α', 'Ε', 'Η', 'Ι', 'Ο', 'Υ', 'Ω');
-        $letters_upper_solvents_to_uppercase 	= array('Ι', 'Υ');
-        $letters_other_to_uppercase 			= array('Σ');
+        $letters_to_uppercase                = [
+                                                'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η',
+                                                'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ',
+                                                'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ',
+                                                'Χ', 'Ψ', 'Ω'
+                                             ];
+        $letters_accent_to_uppercase         = ['Α', 'Ε', 'Η', 'Ι', 'Ο', 'Υ', 'Ω'];
+        $letters_upper_accent_to_uppercase   = ['Α', 'Ε', 'Η', 'Ι', 'Ο', 'Υ', 'Ω'];
+        $letters_upper_solvents_to_uppercase = ['Ι', 'Υ'];
+        $letters_other_to_uppercase          = ['Σ'];
 
-        $lowercase = array_merge($letters, $letters_accent, $letters_upper_accent, $letters_upper_solvents, $letters_other);
-        $uppercase = array_merge($letters_to_uppercase, $letters_accent_to_uppercase, $letters_upper_accent_to_uppercase, $letters_upper_solvents_to_uppercase, $letters_other_to_uppercase);
+        $lowercase = array_merge(
+            $letters,
+            $letters_accent,
+            $letters_upper_accent,
+            $letters_upper_solvents,
+            $letters_other
+        );
+        $uppercase = array_merge(
+            $letters_to_uppercase,
+            $letters_accent_to_uppercase,
+            $letters_upper_accent_to_uppercase,
+            $letters_upper_solvents_to_uppercase,
+            $letters_other_to_uppercase
+        );
 
         return str_replace($lowercase, $uppercase, $string);
-
     }
 }

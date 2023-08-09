@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jblond\morse;
 
 use jblond\morse\CharacterSet\Arabic;
@@ -36,7 +38,7 @@ class Morse
      */
     public function setLetters(string $letters = 'Latin'): string
     {
-        $this->letters = match($letters) {
+        $this->letters = match ($letters) {
             'Cyrillic' => (new Cyrillic())->get(),
             'Greek' => (new Greek())->get(),
             'Hebrew' => (new Hebrew())->get(),
@@ -50,10 +52,10 @@ class Morse
         return $letters;
     }
 
-    protected function mb_array_search(string $needle, array $haystack)
+    protected function mbArraySearch(string $needle, array $haystack)
     {
-        foreach ($haystack as $key => $value){
-            if(mb_strtolower($value) === mb_strtolower($needle)){
+        foreach ($haystack as $key => $value) {
+            if (mb_strtolower($value) === mb_strtolower($needle)) {
                 return $key;
             }
         }
@@ -65,15 +67,15 @@ class Morse
      */
     public function getCharacter(string $input): string
     {
-        if($input === ' '){
+        if ($input === ' ') {
             return '/ ';
         }
-        $result = $this->mb_array_search($input, $this->letters);
-        if($result !== false){
+        $result = $this->mbArraySearch($input, $this->letters);
+        if ($result !== false) {
             return $result . ' ';
         }
-        $result = $this->mb_array_search(strtoupper($input), $this->letters);
-        if($result !== false){
+        $result = $this->mbArraySearch(strtoupper($input), $this->letters);
+        if ($result !== false) {
             return $result . ' ';
         }
         //echo '[' . $input . ']';
@@ -88,8 +90,8 @@ class Morse
     {
         $morseCode = '';
         $stringArray = preg_split('//u', $string);
-        foreach ($stringArray as $character){
-            if($character === ''){
+        foreach ($stringArray as $character) {
+            if ($character === '') {
                 continue;
             }
             $morseCode .= $this->getCharacter($character);
@@ -108,8 +110,8 @@ class Morse
     {
         $return = '';
         $array = str_split($string);
-        foreach ($array as $character){
-            $return .= str_replace(['0', '1', '  '],[$dot, $dash, $pause], $character);
+        foreach ($array as $character) {
+            $return .= str_replace(['0', '1', '  '], [$dot, $dash, $pause], $character);
         }
         return $return;
     }

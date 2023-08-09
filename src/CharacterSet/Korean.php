@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jblond\morse\CharacterSet;
 
 use jblond\morse\CharacterSet\Character;

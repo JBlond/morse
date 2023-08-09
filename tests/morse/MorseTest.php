@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MorseTest extends TestCase
 {
-
     /**
      * @covers \jblond\morse\Morse
      * @return void

@@ -137,12 +137,12 @@ class WaveTest extends TestCase
     protected function getSampleText(): string
     {
         return (
-            'tecta perstillantia in die frigoris et litigiosa mulier conparantur'.
+            'tecta perstillantia in die frigoris et litigiosa mulier conparantur' .
             'qui retinet eam quasi qui ventum teneat et oleum dexterae suae vocabit.' .
             'melius est habitare in terra deserta quam cum muliere rixosa et iracunda. ' .
             'quod si invicem mordetis et comeditis videte ne ab invicem consumamini. ' .
             'si habuerint inter se iurgium viri et unus contra alterum rixari coeperit' .
-            'volensque uxor alterius eruere virum suum de manu fortioris miserit manum'.
+            'volensque uxor alterius eruere virum suum de manu fortioris miserit manum' .
             ' et adprehenderit verenda eius. '
         );
     }

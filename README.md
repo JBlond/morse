@@ -4,7 +4,7 @@ Supported character sets
 
 - Arabic
 - Cyrillic
-- Greek
+- Greek (needs conversion to upper case letters (function included))
 - Hebrew
 - Japanese
 - Korean

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jblond\morse;
 
 use Exception;
@@ -13,15 +15,15 @@ class Wave
     /**
      *
      */
-    protected const dot = '.';
+    protected const DOT = '.';
     /**
      *
      */
-    protected const dash = '-';
+    protected const DASH = '-';
     /**
      *
      */
-    protected const pause = '/';
+    protected const PAUSE = '/';
 
     /**
      * 8-bit sound generated at a rate of 11050 samples/second
@@ -170,19 +172,19 @@ class Wave
             // The dit and dah sound both rise during the first half dit-time
             if ($dit < (0.5 * $this->dotTime)) {
                 $x *= sin((M_PI / 2.0) * $dit / (0.5 * $this->dotTime));
-                $this->bytes[self::dot] .= chr(floor(120 * $x + 128));
-                $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
-            } else if ($dit > (0.5 * $this->dotTime)) {
+                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+            } elseif ($dit > (0.5 * $this->dotTime)) {
                 // During the second half dit-time, the dit sound decays
                 // but the dah sound stays constant
-                $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
-                $this->bytes[self::dot] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
             } else {
-                $this->bytes[self::dot] .= chr(floor(120 * $x + 128));
-                $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
             }
-            $this->bytes[self::pause] .= chr(128);
+            $this->bytes[self::PAUSE] .= chr(128);
             $dit += $this->sampleDelayTime;
         }
 
@@ -191,7 +193,7 @@ class Wave
         $dit = 0;
         while ($dit < $this->dotTime) {
             $x = $this->osc();
-            $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
+            $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
             $dit += $this->sampleDelayTime;
         }
 
@@ -203,7 +205,7 @@ class Wave
             if ($dit > (0.5 * $this->dotTime)) {
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
             }
-            $this->bytes[self::dash] .= chr(floor(120 * $x + 128));
+            $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
             $dit += $this->sampleDelayTime;
         }
 
@@ -212,21 +214,21 @@ class Wave
         $sound = '';
         for ($i = 0, $iMax = strlen($text); $i < $iMax; $i++) {
             if ($text[$i] === ' ') {
-                $sound .= str_repeat($this->bytes[self::pause], $this->wordsPc);
+                $sound .= str_repeat($this->bytes[self::PAUSE], $this->wordsPc);
             } else {
                 $xChar = $this->morse->getCharacter($i);
 
                 for ($k = 0, $kMax = strlen($xChar); $k < $kMax; $k++) {
                     if ($xChar[$k] === '0') {
-                        $sound .= $this->bytes[self::dot];
+                        $sound .= $this->bytes[self::DOT];
                     } else {
-                        $sound .= $this->bytes[self::dash];
+                        $sound .= $this->bytes[self::DASH];
                     }
-                    $sound .= $this->bytes[self::pause];
+                    $sound .= $this->bytes[self::PAUSE];
                 }
 
                 for ($j = 1; $j < $this->charsPc; $j++) {
-                    $sound .= $this->bytes[self::pause];
+                    $sound .= $this->bytes[self::PAUSE];
                 }
             }
         }
@@ -299,9 +301,9 @@ class Wave
     protected function reset(): void
     {
         $this->bytes = [
-            self::dot => '',
-            self::dash => '',
-            self::pause => ''
+            self::DOT => '',
+            self::DASH => '',
+            self::PAUSE => ''
         ];
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace jblond\morse\CharacterSet;
+declare(strict_types=1);
 
-use jblond\morse\CharacterSet\Character;
+namespace jblond\morse\CharacterSet;
 
 class Cyrillic implements Character
 {
