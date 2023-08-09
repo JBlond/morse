@@ -172,17 +172,17 @@ class Wave
             // The dit and dah sound both rise during the first half dit-time
             if ($dit < (0.5 * $this->dotTime)) {
                 $x *= sin((M_PI / 2.0) * $dit / (0.5 * $this->dotTime));
-                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
-                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
             } elseif ($dit > (0.5 * $this->dotTime)) {
                 // During the second half dit-time, the dit sound decays
                 // but the dah sound stays constant
-                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
-                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
             } else {
-                $this->bytes[self::DOT] .= chr(floor(120 * $x + 128));
-                $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+                $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
+                $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
             }
             $this->bytes[self::PAUSE] .= chr(128);
             $dit += $this->sampleDelayTime;
@@ -193,7 +193,7 @@ class Wave
         $dit = 0;
         while ($dit < $this->dotTime) {
             $x = $this->osc();
-            $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+            $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
             $dit += $this->sampleDelayTime;
         }
 
@@ -205,7 +205,7 @@ class Wave
             if ($dit > (0.5 * $this->dotTime)) {
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
             }
-            $this->bytes[self::DASH] .= chr(floor(120 * $x + 128));
+            $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
             $dit += $this->sampleDelayTime;
         }
 
@@ -214,7 +214,7 @@ class Wave
         $sound = '';
         for ($i = 0, $iMax = strlen($text); $i < $iMax; $i++) {
             if ($text[$i] === ' ') {
-                $sound .= str_repeat($this->bytes[self::PAUSE], $this->wordsPc);
+                $sound .= str_repeat($this->bytes[self::PAUSE], (int) $this->wordsPc);
             } else {
                 $xChar = $this->morse->getCharacter($i);
 

@@ -52,20 +52,25 @@ class Morse
         return $letters;
     }
 
-    protected function mbArraySearch(string $needle, array $haystack)
+    /**
+     * @param string|int $needle
+     * @param array $haystack
+     * @return false|int|string
+     */
+    protected function mbArraySearch(string|int $needle, array $haystack)
     {
         foreach ($haystack as $key => $value) {
-            if (mb_strtolower($value) === mb_strtolower($needle)) {
+            if (mb_strtolower($value) === mb_strtolower((string) $needle)) {
                 return $key;
             }
         }
         return false;
     }
     /**
-     * @param string $input
+     * @param string|int $input
      * @return string
      */
-    public function getCharacter(string $input): string
+    public function getCharacter(string|int $input): string
     {
         if ($input === ' ') {
             return '/ ';
@@ -74,7 +79,7 @@ class Morse
         if ($result !== false) {
             return $result . ' ';
         }
-        $result = $this->mbArraySearch(strtoupper($input), $this->letters);
+        $result = $this->mbArraySearch(strtoupper((string) $input), $this->letters);
         if ($result !== false) {
             return $result . ' ';
         }
