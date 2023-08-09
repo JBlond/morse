@@ -53,6 +53,14 @@ class Morse
     }
 
     /**
+     * @return array
+     */
+    public function getLetters(): array
+    {
+        return $this->letters;
+    }
+
+    /**
      * @param string|int $needle
      * @param array $haystack
      * @return false|int|string

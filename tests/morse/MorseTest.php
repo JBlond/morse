@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 class MorseTest extends TestCase
 {
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testGetCharacter(): void
@@ -33,8 +32,58 @@ class MorseTest extends TestCase
         );
     }
 
+    public function testGetLetters(): void
+    {
+        $morse = new Morse();
+        $this->assertEquals(
+            [
+                'Latin',
+                [
+                    // Latin => https://en.wikipedia.org/wiki/Morse_code
+                    '01' => 'A', '1000' => 'B', '1010' => 'C', '100' => 'D', '0' => 'E', '0010' => 'F',
+                    '110' => 'G', '0000' => 'H', '00' => 'I', '0111' => 'J', '101' => 'K', '0100' => 'L',
+                    '11' => 'M', '10' => 'N', '111' => 'O', '0110' => 'P', '1101' => 'Q', '010' => 'R',
+                    '000' => 'S', '1' => 'T', '001' => 'U', '0001' => 'V', '011' => 'W', '1001' => 'X',
+                    '1011' => 'Y', '1100' => 'Z',
+                    '11111' => '0', '01111' => '1', '00111' => '2', '00011' => '3', '00001' => '4',
+                    '00000' => '5', '10000' => '6', '11000' => '7', '11100' => '8', '11110' => '9',
+                    '010101' => '.', '110011' => ',', '001100' => '?',
+                    '011110' => '\'', '101011' => '!', '10010' => '/',
+                    '10110' => '(', '101101' => ')', '01000' => '&', '111000' => ':', '101010' => ';', '10001' => '=',
+                    '01010' => '+', '100001' => '-', '001101' => '_',
+                    '010010' => '"', '0001001' => '$', '011010' => '@',
+                    '00101' => '¿', '110001' => '¡',
+                    'Ã' => '01101', '01101' => 'Á', 'Å' => '01101', 'À' => '01101', 'Â' => '01101', '0101' => 'Ä',
+                    'Ç' => '10100', 'Ć' => '10100', 'Ĉ' => '10100', 'Č' => '110',
+                    '00110' => 'Ð', '00100' => 'É',
+                    '11010' => 'Ğ', '1111' => 'Ĥ', '01110' => 'Ì', '01001' => 'Ł', '11011' => 'Ñ', 'Ö' => '1110',
+                    '0001000' => 'Ś', '01100' => 'Ş', '00010' => 'Ŝ', '0001100' => 'ß', '0011' => 'Ü',
+                    '11001' => 'Ż',
+                ],
+                'Thai',
+                [
+                    '10' => 'ก', '1010' => 'ข', '101' => 'ค', '10110' => 'ง', '10010' => 'จ',
+                    '1111' => 'ฉ', '1001' => 'ช', '1100' => 'ซ', '0111' => 'ญ', '100' => 'ด',
+                    '1' => 'ต', '10100' => 'ถ', '10011' => 'ท', '1000' => 'บ',
+                    '0110' => 'ป', '1101' => 'ผ', '10101' => 'ฝ', '01100' => 'พ', '0010' => 'ฟ',
+                    '11' => 'ม', '1011' => 'ย', '010' => 'ร', '0100' => 'ล', '011' => 'ว',
+                    '000' => 'ส', '0000' => 'ห', '10001' => 'อ', '11011' => 'ฮ', '01011' => 'ฤ',
+                    '01000' => 'ะ', '01' => 'า', '00100' => 'ิ', '00' => 'ี', '00110' => 'ึ',
+                    '0011' => 'ื', '00101' => 'ุ', '1110' => 'ู', '0' => 'เ', '0101' => 'แ',
+                    '01001' => 'ไ', '111' => 'โ', '00010' => 'ำ', '001' => '่', '0001' => '้',
+                    '11000' => '๊', '01010' => '๋', '01101' => 'ั', '11100' => '็', '11001' => '์',
+                    '10111' => 'ๆ', '11010' => 'ฯ',
+                ]
+            ],
+            [
+                $morse->setLetters(),
+                $morse->getLetters(),
+                $morse->setLetters('Thai'),
+                $morse->getLetters()
+            ]
+        );
+    }
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testStringToMorse(): void
@@ -47,7 +96,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testJapaneseString(): void
@@ -71,7 +119,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testGreekString(): void
@@ -90,7 +137,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testCyrillicString(): void
@@ -109,7 +155,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testArabicString(): void
@@ -128,7 +173,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testHebrewString(): void
@@ -147,7 +191,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testKoreanString(): void
@@ -169,7 +212,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testPersianString(): void
@@ -188,7 +230,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testThaiString(): void
@@ -207,7 +248,6 @@ class MorseTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testDotDash(): void

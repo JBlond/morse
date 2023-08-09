@@ -23,7 +23,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @return void
      */
     public function testCanGenerateValidWav(): void
@@ -38,7 +37,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetCwSpeed(): void
@@ -52,7 +50,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @return void
      * @throws Exception
      */
@@ -79,7 +76,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @return void
      * @throws Exception
      */
@@ -91,7 +87,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetFrequency(): void
@@ -106,7 +101,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @return void
      * @throws Exception
      */
@@ -118,7 +112,6 @@ class WaveTest extends TestCase
     }
 
     /**
-     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanGenerateLongerValidWav(): void
