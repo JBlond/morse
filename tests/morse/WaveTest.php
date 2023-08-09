@@ -23,6 +23,10 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave::generate
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
      * @return void
      */
     public function testCanGenerateValidWav(): void
@@ -37,6 +41,10 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave::setCwSpeed
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetCwSpeed(): void
@@ -50,6 +58,9 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      * @throws Exception
      */
@@ -62,6 +73,8 @@ class WaveTest extends TestCase
 
     /**
      * @covers \jblond\morse\Wave
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @throws Exception
      */
     public function testCanSetSampleRate(): void
@@ -76,6 +89,9 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
+     * @covers \jblond\morse\CharacterSet\Latin
      * @return void
      * @throws Exception
      */
@@ -87,6 +103,10 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave::setFrequency
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
      * @throws Exception
      */
     public function testCanSetFrequency(): void
@@ -101,6 +121,9 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
+     * @covers \jblond\morse\CharacterSet\Latin
      * @return void
      * @throws Exception
      */
@@ -112,6 +135,9 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @throws Exception
      */
     public function testCanGenerateLongerValidWav(): void

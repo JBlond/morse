@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 class MorseTest extends TestCase
 {
     /**
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\CharacterSet\Thai
      * @return void
      */
     public function testGetCharacter(): void
@@ -32,6 +35,12 @@ class MorseTest extends TestCase
         );
     }
 
+    /**
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\CharacterSet\Thai
+     * @return void
+     */
     public function testGetLetters(): void
     {
         $morse = new Morse();
@@ -84,6 +93,8 @@ class MorseTest extends TestCase
         );
     }
     /**
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\CharacterSet\Latin
      * @return void
      */
     public function testStringToMorse(): void
@@ -96,6 +107,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Japanese
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testJapaneseString(): void
@@ -119,6 +133,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Greek
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testGreekString(): void
@@ -137,6 +154,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Cyrillic
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testCyrillicString(): void
@@ -155,6 +175,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Arabic
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testArabicString(): void
@@ -173,6 +196,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Hebrew
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testHebrewString(): void
@@ -191,6 +217,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Korean
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testKoreanString(): void
@@ -212,6 +241,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Persian
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testPersianString(): void
@@ -230,6 +262,9 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Thai
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testThaiString(): void
@@ -248,6 +283,8 @@ class MorseTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
      * @return void
      */
     public function testDotDash(): void
