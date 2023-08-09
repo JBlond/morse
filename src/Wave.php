@@ -216,7 +216,7 @@ class Wave
             if ($text[$i] === ' ') {
                 $sound .= str_repeat($this->bytes[self::PAUSE], (int) $this->wordsPc);
             } else {
-                $xChar = $this->morse->getCharacter($i);
+                $xChar = $this->morse->getCharacter($text[$i]);
 
                 for ($k = 0, $kMax = strlen($xChar); $k < $kMax; $k++) {
                     if ($xChar[$k] === '0') {

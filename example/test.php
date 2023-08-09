@@ -10,4 +10,5 @@ $morseBinary = $morse->stringToMorse('SOS');
 $morseCode = $morse->dotDash($morseBinary);
 echo $morseCode;
 $wave = new Wave();
+$wave->setCwSpeed(10);
 file_put_contents('sos.wav', $wave->generate('SOS'));
