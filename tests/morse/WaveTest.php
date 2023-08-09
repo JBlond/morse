@@ -58,6 +58,42 @@ class WaveTest extends TestCase
     }
 
     /**
+     * @covers \jblond\morse\Wave::setCwSpeed
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
+     * @return void
+     * @throws Exception
+     */
+    public function testSetCwSpeedTooSlow(): void
+    {
+        $wav = (new Wave())->setCwSpeed(0);
+        $output = $wav->generate('Hoc est temptare');
+
+        $fileInfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime = $fileInfo->buffer($output);
+        $this->assertEquals('audio/x-wav', $mime);
+    }
+
+    /**
+     * @covers \jblond\morse\Wave::setCwSpeed
+     * @covers \jblond\morse\CharacterSet\Latin
+     * @covers \jblond\morse\Morse
+     * @covers \jblond\morse\Wave
+     * @return void
+     * @throws Exception
+     */
+    public function testSetCwSpeed(): void
+    {
+        $wav = (new Wave())->setCwSpeed(15000);
+        $output = $wav->generate('Hoc est temptare');
+
+        $fileInfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime = $fileInfo->buffer($output);
+        $this->assertEquals('audio/x-wav', $mime);
+    }
+
+    /**
      * @covers \jblond\morse\Wave
      * @covers \jblond\morse\CharacterSet\Latin
      * @covers \jblond\morse\Morse

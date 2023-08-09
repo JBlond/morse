@@ -108,6 +108,9 @@ class Wave
         if (!is_numeric($speed)) {
             throw new RuntimeException('$Speed must be numeric');
         }
+        if ($speed < 1) {
+            $speed = 15;
+        }
 
         $this->cwSpeed = $speed;
         return $this;
@@ -174,15 +177,12 @@ class Wave
                 $x *= sin((M_PI / 2.0) * $dit / (0.5 * $this->dotTime));
                 $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
                 $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
-            } elseif ($dit > (0.5 * $this->dotTime)) {
+            } else {
                 // During the second half dit-time, the dit sound decays
                 // but the dah sound stays constant
                 $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
                 $x *= sin((M_PI / 2.0) * ($this->dotTime - $dit) / (0.5 * $this->dotTime));
                 $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
-            } else {
-                $this->bytes[self::DOT] .= chr((int) floor(120 * $x + 128));
-                $this->bytes[self::DASH] .= chr((int) floor(120 * $x + 128));
             }
             $this->bytes[self::PAUSE] .= chr(128);
             $dit += $this->sampleDelayTime;
