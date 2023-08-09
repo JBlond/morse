@@ -157,6 +157,16 @@ class MorseTest extends TestCase
                 $morse->stringToMorse((new Greek())->stringToUpper('Τέλος εκπομπής'))
             ]
         );
+        $this->assertEquals(
+            [
+                'Greek',
+                '######/ #/ ####/ #####'
+            ],
+            [
+                $morse->setLetters('Greek'),
+                $morse->stringToMorse((new Greek())->stringToUpper('Whoops I used Latin'))
+            ]
+        );
     }
 
     /**
