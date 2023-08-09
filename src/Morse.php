@@ -87,10 +87,6 @@ class Morse
         if ($result !== false) {
             return $result . ' ';
         }
-        $result = $this->mbArraySearch(strtoupper((string) $input), $this->letters);
-        if ($result !== false) {
-            return $result . ' ';
-        }
         //echo '[' . $input . ']';
         return '#';
     }

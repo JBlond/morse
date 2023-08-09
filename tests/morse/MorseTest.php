@@ -24,13 +24,19 @@ class MorseTest extends TestCase
                 '01 ',
                 '01001 ',
                 'Thai',
-                '1001 '
+                '1001 ',
+                'Latin',
+                '0 ',
+                '#'
             ],
             [
                 $morse->getCharacter('A'),
                 $morse->getCharacter('Ł'),
                 $morse->setLetters('Thai'),
-                $morse->getCharacter('ช')
+                $morse->getCharacter('ช'),
+                $morse->setLetters('Latin'),
+                $morse->getCharacter('e'),
+                $morse->getCharacter('€'),
             ]
         );
     }
