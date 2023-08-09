@@ -65,7 +65,7 @@ class Morse
      * @param array $haystack
      * @return false|int|string
      */
-    protected function mbArraySearch(string|int $needle, array $haystack)
+    protected function mbArraySearch(string|int $needle, array $haystack): bool|int|string
     {
         foreach ($haystack as $key => $value) {
             if (mb_strtolower($value) === mb_strtolower((string) $needle)) {
