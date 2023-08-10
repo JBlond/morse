@@ -198,7 +198,7 @@ class Wave
         for ($i = 0; $i < $stringLength; $i++) {
             $xChar = trim($this->morse->getCharacter($text[$i]));
             if ($text[$i] === ' ') {
-                $soundString .= $spaceString;
+                $soundString .= str_repeat($spaceString, (int) $this->wordSpace);
             } elseif ($xChar !== '#') {
                 $xCharLen = strlen($xChar);
                 for ($k = 0; $k < $xCharLen; $k++) {
