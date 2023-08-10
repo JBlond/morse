@@ -85,7 +85,7 @@ class Morse
         }
         $result = $this->mbArraySearch($input, $this->letters);
         if ($result !== false) {
-            return "$result";
+            return (string) $result;
         }
         //echo '[' . $input . ']';
         return '#';
@@ -105,7 +105,7 @@ class Morse
             }
             $morseCharacter = $this->getCharacter($character);
             $morseCode .= $morseCharacter;
-            if ($morseCharacter !== '/ ') {
+            if ($morseCharacter !== '/ ' && $morseCharacter !== '#') {
                 $morseCode .= ' ';
             }
         }
