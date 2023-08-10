@@ -1,6 +1,6 @@
 {
   "name": "jblond/morse",
-  "description": "description",
+  "description": "PHP morse code and wav(e) sound file generation",
   "minimum-stability": "stable",
   "license": "MIT",
   "authors": [

@@ -5,6 +5,8 @@ Supported character sets
 - Arabic, Cyrillic, Greek (needs conversion to upper case letters (function included)), Hebrew, Japanese
 Korean, Latin, Persian, and Thai.
 
+`composer require jblond/morse`
+
 ## Examples
 
 ```php
