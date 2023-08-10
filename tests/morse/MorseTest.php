@@ -21,12 +21,12 @@ class MorseTest extends TestCase
         $morse = new Morse();
         $this->assertEquals(
             [
-                '01 ',
-                '01001 ',
+                '01',
+                '01001',
                 'Thai',
-                '1001 ',
+                '1001',
                 'Latin',
-                '0 ',
+                '0',
                 '#'
             ],
             [
