@@ -7,6 +7,8 @@ Korean, Latin, Persian, and Thai.
 
 `composer require jblond/morse`
 
+Example UI: <https://github.com/JBlond/maas>
+
 ## Examples
 
 ```php
