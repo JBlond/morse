@@ -15,7 +15,7 @@
   },
   "require-dev": {
     "ext-fileinfo": "*",
-    "phpunit/phpunit": "^9 || ^10",
+    "phpunit/phpunit": "^12",
     "squizlabs/php_codesniffer": "*"
   },
   "autoload": {
